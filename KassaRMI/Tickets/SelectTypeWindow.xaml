@@ -1,0 +1,21 @@
+﻿<telerik:RadWindow x:Class="KassaRMI.Tickets.SelectTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="" Height="153" Width="497"
+        ResizeMode="NoResize" CanClose="False"
+        WindowStartupLocation="CenterOwner"
+        telerik:StyleManager.Theme="Office_Blue">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <telerik:RadButton Width="180" Height="50" Grid.Column="0" Content="Бесплатные билеты" Name="freeButton"
+                           Click="freeButton_Click"/>
+        <telerik:RadButton Width="180" Height="50" Grid.Column="1" Content="Платные билеты" Name="notfreeButton"
+                           Click="notfreeButton_Click"/>
+
+    </Grid>
+</telerik:RadWindow>

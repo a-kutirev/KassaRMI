@@ -1,0 +1,50 @@
+﻿<telerik:RadWindow x:Class="KassaRMI.Tickets.CategTicketWindow"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" xmlns:controls="clr-namespace:KassaLib.Controls;assembly=KassaLib"
+                   Header="Категории посетителей" Height="596" Width="800"
+                    telerik:StyleManager.Theme="Office_Blue"
+                   Name="CategWin"
+                   xmlns:navigation="clr-namespace:Telerik.Windows.Controls.Navigation;assembly=Telerik.Windows.Controls.Navigation"
+                    navigation:RadWindowInteropHelper.ShowInTaskbar="True"
+                   WindowStartupLocation="CenterScreen">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label VerticalAlignment="Center" HorizontalAlignment="Left" Name="DateLabel" Grid.ColumnSpan="2"
+               Content="2 февраля 2020 г." FontSize="20" FontWeight="Bold" Margin="5,0"/>
+
+        <GroupBox BorderThickness="3" Header="Экспозиции" FontSize="16" 
+                  Margin="5,0" Grid.Row="1"
+                  FontWeight="Bold">
+            <ScrollViewer>
+                <StackPanel Name="ExpoPanel" Margin="10"/>
+            </ScrollViewer>
+        </GroupBox>
+
+        <GroupBox Margin="5,0" Grid.Column="1" BorderThickness="3" Grid.Row="1"                 
+                  Header="Категории" FontSize="16" Name="CatGroup" 
+                  IsEnabled="False" FontWeight="Bold">
+            <ScrollViewer>
+                <StackPanel Name="CatPanel"/>
+            </ScrollViewer>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Right">
+            <telerik:RadButton Width="150" Margin="5" Content="Сохранить" FontSize="14"
+                               telerik:StyleManager.Theme="Office_Blue" Name="SaveBt" Click="RadButton_Click"/>
+            <telerik:RadButton Width="150" Margin="5" Content="Сохранить и закрыть" FontSize="14"
+                               telerik:StyleManager.Theme="Office_Blue" Name="SaveAndCloseBt" Click="RadButton_Click"/>
+        </StackPanel>
+
+    </Grid>
+</telerik:RadWindow>

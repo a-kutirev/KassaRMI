@@ -1,0 +1,80 @@
+﻿<telerik:RadWindow x:Class="KassaRMI.Certrs.EditTableCert"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="Редактировать информациюо сертификате" Height="375" Width="400"
+                >
+    <Grid Background="#FFBFDBFF">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Label  Grid.Column="0" Grid.Row="0" 
+                Content="Номер сертификата" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <TextBox Grid.Column="1" Grid.Row="0" 
+          x:Name="NomerCert"  
+          VerticalAlignment="Center"  Margin="5,0,5,0"
+          Text="{Binding Path= Model.Nomer_cert, Mode=TwoWay}"/>
+
+        <Label  Grid.Column="0" Grid.Row="1" 
+                Content="Номинал" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <TextBox x:Name="Nominal"  Grid.Column="1" Grid.Row="1" 
+          TextWrapping="Wrap" VerticalAlignment="Center" Margin="5,0,5,0"
+          Text="{Binding Path= Model.Nominal, Mode=TwoWay}"/>
+
+        <Label  Grid.Column="0" Grid.Row="2" 
+                Content="Экспозиция" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+        <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"
+                    Orientation="Horizontal" Margin="5,0,5,0">
+            <TextBox IsReadOnly="True" Width="195" Text="{Binding Path=Exponame}"/>
+            <Button Width="22" Content="..." Name="SelectExpoBt" Click="SelectExpoBt_Click"/>
+        </StackPanel>
+
+
+        <Label  Grid.Column="0" Grid.Row="3" 
+        Content="Экскурсия" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <CheckBox Grid.Column="1" Grid.Row="3" x:Name="Exqurs"  HorizontalAlignment="Left" 
+           VerticalAlignment="Center"
+           IsChecked="{Binding Path = Model.Exqurs , Mode = TwoWay }"/>
+
+        <Label  Grid.Column="0" Grid.Row="4" 
+        Content="Активен" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <CheckBox Grid.Column="1" Grid.Row="4" x:Name="IsActive"  HorizontalAlignment="Left" 
+         VerticalAlignment="Center"
+           IsChecked="{Binding Path = Model.Isactive , Mode = TwoWay }"/>
+
+        <Label  Grid.Column="0" Grid.Row="5" 
+        Content="Дата выдачи" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <DatePicker Grid.Column="1" Grid.Row="5" x:Name="DataVydachi" 
+             HorizontalAlignment="Left"  VerticalAlignment="Center" Margin="5,0,0,0"
+             SelectedDate="{Binding Path = Model.Datavydachi, Mode = TwoWay}"      
+             />
+
+        <Label  Grid.Column="0" Grid.Row="6" 
+         Content="Дата погашения" HorizontalAlignment="Right" Margin="0,0,0,0" VerticalAlignment="Center" FontWeight="Bold"/>
+
+        <DatePicker Grid.Column="1" Grid.Row="6" x:Name="DataPogasheniya" HorizontalAlignment="Left" 
+             VerticalAlignment="Center" Margin="5,0,0,0"
+             SelectedDate="{Binding Path = Model.Datapogasheniya, Mode = TwoWay}"      />
+
+        <telerik:RadButton x:Name="SaveChanges" Grid.Column="0" Grid.Row="7" Grid.ColumnSpan ="2"
+                           Content="Сохранить изменения"  VerticalAlignment="Center" Width="154" Click="SaveChanges_Click"/>
+
+    </Grid>
+
+</telerik:RadWindow>

@@ -1,0 +1,53 @@
+﻿<telerik:RadWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        xmlns:Models="clr-namespace:KassaLib.Models;assembly=KassaLib" xmlns:converters="clr-namespace:KassaLib.Converters;assembly=KassaLib" x:Class="KassaRMI.Certrs.TableCert"
+        Header="Все сертификаты" Height="300" Width="573"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"    
+    >
+    <telerik:RadWindow.Resources>
+        <ResourceDictionary>
+            <converters:IntToBooleanConverter x:Key="IntToBool"/>
+        </ResourceDictionary>
+    </telerik:RadWindow.Resources>
+    <Grid Background="#FFBFDBFF">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="49*"/>
+        </Grid.ColumnDefinitions>
+        <telerik:RadGridView x:Name="TableCertView" HorizontalAlignment="Left" VerticalAlignment="Center"
+                             Height="258" Width="553" Grid.ColumnSpan="2"
+                                        AlternationCount="2"
+                                        AlternateRowBackground="AliceBlue"
+                                         HorizontalGridLinesBrush="AliceBlue"
+                                          VerticalGridLinesBrush="AliceBlue"
+                                          AutoGenerateColumns="False"
+                                        IsReadOnly="False"
+                                         telerik:StyleManager.Theme="Office_Blue">
+            <telerik:RadGridView.DataContext>
+                <Models:CertModel/>
+            </telerik:RadGridView.DataContext>
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding id}" IsReadOnly="true" Header="ID"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding nomer_cert}" IsReadOnly="true" Header="Номер"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding nominal}" IsReadOnly="true" Header="Номинал"/>
+                <telerik:GridViewCheckBoxColumn DataMemberBinding="{Binding exqurs, Converter={StaticResource IntToBool}}" IsReadOnly="true" Header="Экскурсия"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding datavydachi, StringFormat={}{0:dd/MM/yyyy}}" IsReadOnly="true" Header="Дата выдачи"/>
+                <telerik:GridViewCheckBoxColumn DataMemberBinding="{Binding isactive, Converter={StaticResource IntToBool}}" IsReadOnly="true" Header="Активен"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding datapogasheniya, StringFormat={}{0:dd/MM/yyyy}}" IsReadOnly="true" Header="Дата погашения"/>
+                <telerik:GridViewColumn>
+                    <telerik:GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <telerik:RadButton Name="EditCertBt" Click="EditCertBt_Click"   CommandParameter="{Binding id}" Content="..." Width="25"/>
+                        </DataTemplate>
+                    </telerik:GridViewColumn.CellTemplate>
+                </telerik:GridViewColumn>
+            </telerik:RadGridView.Columns>
+
+
+
+        </telerik:RadGridView>
+
+    </Grid>
+</telerik:RadWindow>

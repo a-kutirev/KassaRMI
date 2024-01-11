@@ -1,0 +1,43 @@
+﻿<telerik:RadWindow x:Class="KassaRMI.Souvenirs.SelectTovarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="Выбор товара" Height="400" Width="600"
+        ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+                   telerik:StyleManager.Theme="Office_Blue">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <CheckBox Content="Не показывать товары с нулевым количеством" Margin="10"
+                  Checked="CheckBox_Checked"
+                  Unchecked="CheckBox_Checked" IsChecked="True"/>
+
+        <telerik:RadGridView Grid.Row="1" Margin="5"
+                             Name="SelectTovarGridView"
+                             MouseDoubleClick="RadGridView_MouseDoubleClick"
+                             telerik:StyleManager.Theme="Office_Blue"
+                             AlternationCount="2"
+                             AlternateRowBackground="AliceBlue"
+                             VerticalGridLinesBrush="AliceBlue"
+                             HorizontalGridLinesBrush="AliceBlue"
+                             AutoGenerateColumns="False"
+                             RowIndicatorVisibility="Collapsed"
+                             ShowSearchPanel="True"
+                             ShowGroupPanel="False">
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding idnomenklatura}" 
+                                            IsVisible="False"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding nomenklaturaname}" IsReadOnly="true"
+                                            Width="350"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding price}" IsReadOnly="true"
+                                            Width="125"/>
+                <telerik:GridViewDataColumn DataMemberBinding="{Binding balance}" IsReadOnly="true"
+                                            Width="125"/>
+            </telerik:RadGridView.Columns>            
+        </telerik:RadGridView>
+
+    </Grid>
+</telerik:RadWindow>

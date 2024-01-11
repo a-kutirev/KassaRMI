@@ -1,0 +1,34 @@
+﻿<telerik:RadWindow x:Class="KassaRMI.Tickets.NewEditCategoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="Новая категория" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Height="140" Width="600" telerik:StyleManager.Theme="Office_Blue">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Новая категория:" FontSize="16" Margin="0,0,10,0"/>
+
+        <TextBox Width="370" Height="25"
+                 Grid.Row="0" Grid.Column="1" Margin="9,12,8,12"
+                 Text="{Binding CategoryModel.Categoryname, Mode=TwoWay}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+            <telerik:RadButton Height="40" Width="150" Margin="10,0"
+                               Content="Сохранить и закрыть"
+                               Name="SaveAndCloseBt"
+                               telerik:StyleManager.Theme="Office_Blue" Click="SaveAndCloseBt_Click"/>
+        </StackPanel>
+
+    </Grid>
+</telerik:RadWindow>

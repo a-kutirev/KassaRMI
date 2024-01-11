@@ -1,0 +1,80 @@
+﻿<telerik:RadWindow x:Class="KassaRMI.Tickets.NewEditExpoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="Новая экспозиция" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Height="340" Width="700" telerik:StyleManager.Theme="Office_Blue">
+    <telerik:RadWindow.Resources>
+        <telerik:BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </telerik:RadWindow.Resources>
+
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Наименование экспозиции:" FontSize="16" Margin="0,0,10,0"/>
+        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Экспозиция веременная:" FontSize="16" Margin="0,0,10,0"/>
+        <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Дата начала работы:" FontSize="16" Margin="0,0,10,0"
+               Visibility="{Binding Path=IsChecked, ElementName=NonPersCB, Converter={StaticResource BoolToVis}}"/>
+        <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Дата окончания работы:" FontSize="16" Margin="0,0,10,0"
+               Visibility="{Binding Path=IsChecked, ElementName=NonPersCB, Converter={StaticResource BoolToVis}}"/>
+        <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Экспозиция замещающая:" FontSize="16" Margin="0,0,10,0"/>
+        <Label Grid.Row="5" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Замещается экспозиция:" FontSize="16" Margin="0,0,10,0"
+               Visibility="{Binding Path=IsChecked, ElementName=ZamExpoCB, Converter={StaticResource BoolToVis}}"/>
+
+        <TextBox Width="430" Height="25"
+                 Grid.Row="0" Grid.Column="1"
+                 Text="{Binding ExpositionModel.Expositionname, Mode=TwoWay}"/>
+        <CheckBox Grid.Row="1" Grid.Column="1" 
+                  Margin="10,0,0,0" 
+                  Name="NonPersCB"/>
+        <telerik:RadDatePicker Grid.Row="2" Grid.Column="1"
+                               Height="25" Width="150"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"
+                               Visibility="{Binding Path=IsChecked, ElementName=NonPersCB, Converter={StaticResource BoolToVis}}"
+                               SelectedValue="{Binding ExpositionModel.Expositionstart, Mode=TwoWay}"/>
+        <telerik:RadDatePicker Grid.Row="3" Grid.Column="1"
+                               Height="25" Width="150"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"
+                               Visibility="{Binding Path=IsChecked, ElementName=NonPersCB, Converter={StaticResource BoolToVis}}"
+                               SelectedValue="{Binding ExpositionModel.Expositionend, Mode=TwoWay}"/>
+        <CheckBox Grid.Row="4" Grid.Column="1" 
+                  Margin="10,0,0,0"
+                  Name="ZamExpoCB"
+                  IsChecked="{Binding ExpositionModel.Expositionzam, Mode=TwoWay}"/>
+        <telerik:RadComboBox Grid.Row="5" Grid.Column="1"
+                             Height="25" Width="430"
+                             Name="ExpoCombo"
+                             SelectedValue="{Binding ExpositionModel.Expositionzamexpo, Mode=TwoWay}"
+                             Visibility="{Binding Path=IsChecked, ElementName=ZamExpoCB, Converter={StaticResource BoolToVis}}"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+            <telerik:RadButton Height="40" Width="150" Margin="10,0"
+                               Content="Сохранить и закрыть"
+                               Name="SaveAndCloseBt"
+                               telerik:StyleManager.Theme="Office_Blue" Click="SaveAndCloseBt_Click"/>
+        </StackPanel>
+
+    </Grid>
+</telerik:RadWindow>

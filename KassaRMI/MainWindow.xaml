@@ -1,0 +1,215 @@
+﻿<Window
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+                xmlns:Souvenirs="clr-namespace:KassaRMI.Souvenirs" x:Class="KassaRMI.MainWindow"
+                ResizeMode="CanMinimize" 
+                Title="РМИ Новосибирск" Height="580" Width="822" Closed="Window_Closed">
+    <Grid Background="#FFBFDBFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="30,0,10,0">
+            <CheckBox Content=" Установить актуальную дату" VerticalContentAlignment="Center" FontSize="16" x:Name="ShowPicker"
+                      Checked="ShowPicker_Checked" Unchecked="ShowPicker_Checked"/>
+            <telerik:RadDatePicker telerik:StyleManager.Theme="Office_Blue" Margin="30,0" Width="100"
+                                   FontSize="16" x:Name="CurDatePicker"
+                                   SelectionChanged="CurDatePicker_SelectionChanged"                                   
+                                   IsEnabled="{Binding IsChecked, ElementName=ShowPicker}"/>
+
+            <telerik:RadButton Width="29" Name="OptionBt" Click="OptionBt_Click" Margin="330,0,0,0">
+                <Image Source="/Resource/pngegg.png"/>
+            </telerik:RadButton>
+
+        </StackPanel>
+
+        <telerik:RadRibbonView telerik:StyleManager.Theme="Office_Blue" 
+                                   Title="Сувенирная продукция"
+                                   ApplicationName=""
+                                   Grid.Row="1" 
+                                   FontWeight="Bold"
+                                   FontSize="25">
+            <telerik:RadRibbonTab FontWeight="Normal">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Продажи" 
+                                                     Margin="3" FontSize="18"
+                                                     Height="70" Width="150"
+                                                     VerticalContentAlignment="Center"
+                                                    x:Name="SellSouvenirBt" Click="SellSouvenirBt_Click"/>
+                    <telerik:RadRibbonButton Content="Приход" 
+                                                     Margin="3" FontSize="18"
+                                                     Height="70"
+                                                     Width="150"
+                                                     VerticalContentAlignment="Center"
+                                                    x:Name="PrihodSouvenirBt" Click="PrihodSouvenirBt_Click"/>
+                    <telerik:RadRibbonDropDownButton Text="Таблицы" 
+                                                         Margin="3,5,3,9" FontSize="18"
+                                                         Height="70"
+                                                         Width="150"
+                                                         VerticalContentAlignment="Center">
+                        <telerik:RadRibbonDropDownButton.DropDownContent>
+                            <telerik:RadContextMenu BorderThickness="0" Name="SouvTableContentMenu">
+                                <telerik:RadMenuItem Header="Номенклатура" Name="SouvNomBt" Click="SouvNomBt_Click"/>
+                                <telerik:RadMenuItem Header="Приход (сувениры)" Name="SouvPrihBt" Click="SouvPrihBt_Click"/>
+                                <telerik:RadMenuItem Header="Продажи (сувениры)" Name="SouvSellBt" Click="SouvSellBt_Click"/>
+                            </telerik:RadContextMenu>
+                        </telerik:RadRibbonDropDownButton.DropDownContent>
+                    </telerik:RadRibbonDropDownButton>
+                    <telerik:RadRibbonDropDownButton Content="Справочники" 
+                                                     Visibility="Hidden"
+                                                     Margin="3" FontSize="18"
+                                                     Height="70"
+                                                     Width="150"
+                                                     VerticalContentAlignment="Center"/>
+                    <telerik:RadRibbonDropDownButton Content="Отчеты" 
+                                                    Margin="3" FontSize="18"
+                                                    Height="70"
+                                                    Width="150"
+                                                    VerticalContentAlignment="Center">
+                        <telerik:RadRibbonDropDownButton.DropDownContent>
+                            <telerik:RadContextMenu BorderThickness="0" x:Name="SouvReportContextMenu">
+                                <telerik:RadMenuItem Header="Продажи за день/период"
+                                                     Name="SellSouvBt"
+                                                     Click="SellSouvBt_Click"/>
+                                <telerik:RadMenuItem Header="Движение товара"
+                                                     Name="MoveBt"
+                                                     Click="MoveBt_Click"/>
+                                <telerik:RadMenuItem Header="Движение товара (с выбором товара)"
+                                                     Name="MoveConfigBt"
+                                                     Click="MoveConfigBt_Click"/>
+                                <telerik:RadMenuItem IsSeparator="True"/>
+                                <telerik:RadMenuItem Header="Остатки товара"
+                                                     Name="BalanceSouvBt"
+                                                     Click="BalanceSouvBt_Click"/>
+                                <telerik:RadMenuItem IsSeparator="True"/>
+                                <telerik:RadMenuItem Header="Печать ценников"
+                                                     Name="PriceLabelBtBt"
+                                                     Click="PriceLabelBtBt_Click"/>
+                            </telerik:RadContextMenu>
+                        </telerik:RadRibbonDropDownButton.DropDownContent>
+                    </telerik:RadRibbonDropDownButton>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+        </telerik:RadRibbonView>
+
+        <telerik:RadRibbonView telerik:StyleManager.Theme="Office_Blue" 
+                                       Title="Билеты"
+                                       ApplicationName=""
+                                       Grid.Row="2" 
+                                       FontWeight="Bold"
+                                       FontSize="25">
+            <telerik:RadRibbonTab FontWeight="Normal">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Продажи" 
+                                                 Margin="3" FontSize="18"
+                                                 Height="70" Width="150"
+                                                 VerticalContentAlignment="Center"
+                                                 x:Name="SellTicketBt"
+                                                 Click="SellTicketBt_Click"
+                                             Visibility="Hidden"/>
+                    <telerik:RadRibbonButton Content="Категории" 
+                                                     Margin="3" FontSize="18"
+                                                     Height="70" Width="150"
+                                                     VerticalContentAlignment="Center" Click="RadRibbonButton_Click"/>
+                    <telerik:RadRibbonButton Content="Приход" 
+                                                     Margin="3" FontSize="18"
+                                                     Height="70" Width="150"
+                                                     Name="PrihodTicketBt"
+                                                     Click="PrihodTicketBt_Click"
+                                                     VerticalContentAlignment="Center"/>
+                    <telerik:RadRibbonDropDownButton Content="Таблицы" 
+                                                     Margin="3" FontSize="18"
+                                                     Height="70"
+                                                     Width="150"
+                                                     VerticalContentAlignment="Center">
+                        <telerik:RadRibbonDropDownButton.DropDownContent>
+                            <telerik:RadContextMenu BorderThickness="0" Name="TicketContextMenu">
+                                <telerik:RadMenuItem Header="Экспозиции" Name="ExpoBt" Click="ExpoBt_Click"/>
+                                <telerik:RadMenuItem Header="Категории посетителей (наименования)"
+                                                     Name="CategBt" Click="CategBt_Click"/>
+                                <telerik:RadMenuItem IsSeparator="True"/>
+                                <telerik:RadMenuItem Header="Выдача билетов (по дням)"
+                                                     Name="SellTicketsBt"
+                                                     Click="SellTicketsBt_Click"/>
+                                <telerik:RadMenuItem Header="Поступления билетов" 
+                                                     Name="TicketPrihodBt"
+                                                     Click="TicketPrihodBt_Click"/>
+                                <telerik:RadMenuItem IsSeparator="True"/>
+                                <telerik:RadMenuItem Header="Выданные билеты по категориям"
+                                                     Name="ByCategBt"
+                                                     Click="ByCategBt_Click"/>
+                            </telerik:RadContextMenu>
+                        </telerik:RadRibbonDropDownButton.DropDownContent>
+                    </telerik:RadRibbonDropDownButton>
+                    <telerik:RadRibbonDropDownButton Content="Отчеты" 
+                                                     Margin="3,7" FontSize="18"
+                                                     Height="70"
+                                                     Width="150"
+                                                     VerticalContentAlignment="Center">
+                        <telerik:RadRibbonDropDownButton.DropDownContent>
+                            <telerik:RadContextMenu BorderThickness="0" x:Name="TickReportContextMenu">
+                                <telerik:RadMenuItem Header="Продажи за день/период"
+                                                     Name="SellTicketRepBt"
+                                                     Click="SellTicketRepBt_Click"/>
+                                <telerik:RadMenuItem Header="Продажи за день/период (расширенный)"
+                                                     Name="SellTicketRepBtExt"
+                                                     Click="SellTicketRepBtExt_Click"/>
+                                <telerik:RadMenuItem IsSeparator="True"/>
+                                <telerik:RadMenuItem Header="Статистика за день/период по экспозиции"
+                                                     Name="StatExpoBt"
+                                                     Click="StatExpoBt_Click"/>
+                                <telerik:RadMenuItem Header="Статистика за день/период по экспозиции (категории)"
+                                                     Name="StatCatExpoBt"
+                                                     Click="StatCatExpoBt_Click"/>
+                                <telerik:RadMenuItem Header="Статистика за день/период"
+                                                     Name="StatBt"
+                                                     Click="StatBt_Click"/>
+                                <telerik:RadMenuItem Header="Статистика за период (с выбором категорий)"
+                                                     Name="StatConfBt"
+                                                     Click="StatConfBt_Click"/>
+                                <telerik:RadMenuItem IsSeparator="True"/>
+                                <telerik:RadMenuItem Header="Остаток билетов на дату"
+                                                     Name="TicketBalanceBt"
+                                                     Click="TicketBalanceBt_Click"/>
+                            </telerik:RadContextMenu>
+                        </telerik:RadRibbonDropDownButton.DropDownContent>
+                    </telerik:RadRibbonDropDownButton>
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+
+        </telerik:RadRibbonView>
+
+        <telerik:RadRibbonView telerik:StyleManager.Theme="Office_Blue" 
+                                   Title="Сертификаты"
+                                   ApplicationName=""
+                                   Grid.Row="3" 
+                                   FontWeight="Bold"
+                                   FontSize="25" Background="#FFE6F1FE">
+            <telerik:RadRibbonTab FontWeight="Normal">
+                <telerik:RadRibbonGroup>
+                    <telerik:RadRibbonButton Content="Добавить " 
+                                          Margin="3" FontSize="18"
+                                          Height="70" Width="150"
+                                          VerticalContentAlignment="Center"
+                                         x:Name="AddCert_Btn" Click="AddCert_Btn_Click"/>
+                    <telerik:RadRibbonButton Content="Сканировать " 
+                                          Margin="3" FontSize="18"
+                                          Height="70"
+                                          Width="150"
+                                          VerticalContentAlignment="Center"
+                                         x:Name="ScanCert_Btn" Click="ScanCert_Btn_Click"/>
+                    <telerik:RadRibbonButton Content="Таблица " 
+                                          Margin="3" FontSize="18"
+                                          Height="70"
+                                          Width="150"
+                                          VerticalContentAlignment="Center"
+                                         x:Name="TableCert_Btn" Click="TableCert_Btn_Click" />
+                </telerik:RadRibbonGroup>
+            </telerik:RadRibbonTab>
+        </telerik:RadRibbonView>
+    </Grid>
+</Window>

@@ -1,0 +1,70 @@
+﻿<telerik:RadWindow x:Class="KassaRMI.Tickets.PrihodTicketWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+        Header="Приход" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
+        Height="297.5" Width="400" telerik:StyleManager.Theme="Office_Blue">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Дата поступления:" FontSize="16" Margin="0,0,10,0"/>
+        <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Серия (буквы):" FontSize="16" Margin="0,0,10,0"/>
+        <Label Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Серия (цифры):" FontSize="16" Margin="0,0,10,0"/>
+        <Label Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Количество:" FontSize="16" Margin="0,0,10,0"/>
+        <Label Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" 
+               Content="Новая нумерация:" FontSize="16" Margin="0,0,10,0"/>
+
+        <telerik:RadDatePicker telerik:StyleManager.Theme="Office_Blue" Margin="10,5" Width="170" Grid.Column="1"
+                               HorizontalAlignment="Left" Height="26"
+                               VerticalContentAlignment="Center"
+                               FontSize="16" x:Name="CurDatePicker"
+                               SelectedValue="{Binding NewTicketsModel.Data, Mode=TwoWay}"/>
+
+        <TextBox Width="100" Height="25" 
+                 HorizontalAlignment="Left"
+                 Margin="10,0,0,0"
+                 Grid.Row="1" Grid.Column="1"
+                 Text="{Binding NewTicketsModel.Liter_tail, Mode=TwoWay}"/>
+
+        <TextBox Width="100" Height="25" 
+                 HorizontalAlignment="Left"
+                 Margin="10,0,0,0"
+                 Grid.Row="2" Grid.Column="1"
+                 Text="{Binding NewTicketsModel.Num_tail, Mode=TwoWay}"/>
+
+        <TextBox Width="100" Height="25" 
+                 HorizontalAlignment="Left"
+                 Margin="10,0,0,0"
+                 Grid.Row="3" Grid.Column="1"
+                 Text="{Binding NewTicketsModel.Amount, Mode=TwoWay}"/>
+
+        <CheckBox Height="25" 
+                  HorizontalAlignment="Left"
+                  Name="NewNumCB"
+                  Margin="10,0,0,0"
+                  Grid.Row="4" Grid.Column="1"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.ColumnSpan="2" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+            <telerik:RadButton Height="40" Width="150" Margin="10,0"
+                               Content="Сохранить и закрыть"
+                               telerik:StyleManager.Theme="Office_Blue" Click="RadButton_Click"/>
+        </StackPanel>
+    </Grid>
+</telerik:RadWindow>
